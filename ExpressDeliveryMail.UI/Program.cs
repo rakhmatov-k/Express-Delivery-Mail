@@ -35,3 +35,21 @@
 //    Rating = 6
 //};
 //await branch.CreatedAsync(branchCreationModel);
+
+//using ExpressDaliveryMail.Data.AppDbContexts;
+//using ExpressDaliveryMail.Data.Repositories;
+//using ExpressDeliveryMail.Domain.Entities.Transports;
+//using ExpressDeliveryMail.Service.Services;
+
+//MealDbContext mealDbContext = new MealDbContext();
+//TransportRepository transportRepository = new TransportRepository(mealDbContext);
+
+//TransportService transportService = new TransportService(transportRepository);
+
+//TransportCreationModel transportCreationModel = new TransportCreationModel()
+//{
+//    Description = "Description",
+//    Colour = "red"
+//};
+ 
+//await transportService.CreatedAsync(transportCreationModel);

@@ -1,12 +1,12 @@
-﻿using ExpressDeliveryMail.Domain.Entities;
+﻿using ExpressDeliveryMail.Domain.Entities.Transports;
 
 namespace ExpressDeliveryMail.Service.Interfaces;
 
 public interface ITransportService
 {
-    ValueTask<Transport> CreatedAsync(Transport transport);
-    ValueTask<Transport> UpdateAsync(long id, Transport transport);
+    ValueTask<TransportViewModel> CreatedAsync(TransportCreationModel transport);
+    ValueTask<TransportViewModel> UpdateAsync(long id, TransportUpdateModel transport, bool isUsusDeleted);
     ValueTask<bool> DeleteAsync(long id);
-    ValueTask<Transport> GetByIdAsync(long id);
-    ValueTask<IEnumerable<Transport>> GetAllAsync();
+    ValueTask<TransportViewModel> GetByIdAsync(long id);
+    ValueTask<IEnumerable<TransportViewModel>> GetAllAsync();
 }
