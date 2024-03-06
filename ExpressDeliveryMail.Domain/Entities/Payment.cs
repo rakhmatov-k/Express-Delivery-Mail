@@ -7,8 +7,8 @@ public class Payment : Auditable
 {
     public long PackageId { get; set; }
     public Package Package { get; set; }
-    public long PaymentId { get; set; }
-    public Payment Payment { get; set; }
+    public long PaymentsId { get; set; }
+    public Payment Payments { get; set; }
     public long UserId { get; set; }
     public User User { get; set; }
     public decimal Amount { get; set; }
