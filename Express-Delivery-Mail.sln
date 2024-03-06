@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34310.174
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressDeliveryMail.Menu", "ExpressDeliveryMail.Menu\ExpressDeliveryMail.Menu.csproj", "{2EB08AD5-0270-4F16-BBA6-59ADA5B3D2B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressDeliveryMail.Service", "ExpressDeliveryMail.Service\ExpressDeliveryMail.Service.csproj", "{26BF26C7-48A8-49F8-A5F8-1F51BE8898F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressDeliveryMail.Service", "ExpressDeliveryMail.Service\ExpressDeliveryMail.Service.csproj", "{26BF26C7-48A8-49F8-A5F8-1F51BE8898F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressDeliveryMail.Domain", "ExpressDeliveryMail.Domain\ExpressDeliveryMail.Domain.csproj", "{1443FED6-A32C-4919-BE9D-760DC1BBD9C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressDeliveryMail.Domain", "ExpressDeliveryMail.Domain\ExpressDeliveryMail.Domain.csproj", "{1443FED6-A32C-4919-BE9D-760DC1BBD9C4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressDeliveryMail.Data", "ExpressDeliveryMail.Data\ExpressDeliveryMail.Data.csproj", "{BE4C478E-D698-4B34-9435-263A292B8C07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressDaliveryMail.Data", "ExpressDaliveryMail.Data\ExpressDaliveryMail.Data.csproj", "{CB6E1C1A-AA39-4B43-8D0B-D7BEC693AC1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2EB08AD5-0270-4F16-BBA6-59ADA5B3D2B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2EB08AD5-0270-4F16-BBA6-59ADA5B3D2B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2EB08AD5-0270-4F16-BBA6-59ADA5B3D2B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2EB08AD5-0270-4F16-BBA6-59ADA5B3D2B2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{26BF26C7-48A8-49F8-A5F8-1F51BE8898F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{26BF26C7-48A8-49F8-A5F8-1F51BE8898F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26BF26C7-48A8-49F8-A5F8-1F51BE8898F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,10 +23,10 @@ Global
 		{1443FED6-A32C-4919-BE9D-760DC1BBD9C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1443FED6-A32C-4919-BE9D-760DC1BBD9C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1443FED6-A32C-4919-BE9D-760DC1BBD9C4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE4C478E-D698-4B34-9435-263A292B8C07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE4C478E-D698-4B34-9435-263A292B8C07}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE4C478E-D698-4B34-9435-263A292B8C07}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE4C478E-D698-4B34-9435-263A292B8C07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB6E1C1A-AA39-4B43-8D0B-D7BEC693AC1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB6E1C1A-AA39-4B43-8D0B-D7BEC693AC1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB6E1C1A-AA39-4B43-8D0B-D7BEC693AC1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB6E1C1A-AA39-4B43-8D0B-D7BEC693AC1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
