@@ -1,4 +1,5 @@
 ﻿using ExpressDeliveryMail.Domain.Commons;
+using ExpressDeliveryMail.Domain.Entities.Branches;
 
 namespace ExpressDeliveryMail.Domain.Entities;
 

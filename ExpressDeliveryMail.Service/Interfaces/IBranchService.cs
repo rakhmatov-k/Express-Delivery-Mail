@@ -1,12 +1,12 @@
-﻿using ExpressDeliveryMail.Domain.Entities;
+﻿using ExpressDeliveryMail.Domain.Entities.Branches;
 
 namespace ExpressDeliveryMail.Service.Interfaces;
 
 public interface IBranchService
 {
-    ValueTask<Branch> CreatedAsync(Branch branch);
-    ValueTask<Branch> UpdateAsync(long id, Branch branch);
+    ValueTask<BranchViewModel> CreatedAsync(BranchCreationModel branch);
+    ValueTask<BranchViewModel> UpdateAsync(long id, BranchUpdateModel branch, bool isUsesDeleted );
     ValueTask<bool> DeleteAsync(long id);
-    ValueTask<Branch> GetByIdAsync(long id);
-    ValueTask<IEnumerable<Branch>> GetAllAsync();
+    ValueTask<BranchViewModel> GetByIdAsync(long id);
+    ValueTask<IEnumerable<BranchViewModel>> GetAllAsync();
 }
