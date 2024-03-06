@@ -1,5 +1,6 @@
 ﻿using ExpressDeliveryMail.Domain.Commons;
 using ExpressDeliveryMail.Domain.Entities.Branches;
+using ExpressDeliveryMail.Domain.Entities.Transports;
 
 namespace ExpressDeliveryMail.Domain.Entities;
 
