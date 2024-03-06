@@ -1,4 +1,5 @@
 ﻿using ExpressDeliveryMail.Domain.Commons;
+using ExpressDeliveryMail.Domain.Entities.Users;
 using ExpressDeliveryMail.Domain.Enums;
 
 namespace ExpressDeliveryMail.Domain.Entities;

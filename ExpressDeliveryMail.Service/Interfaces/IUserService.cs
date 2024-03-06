@@ -1,12 +1,13 @@
-﻿using ExpressDeliveryMail.Domain.Entities;
+﻿using ExpressDeliveryMail.Domain.Entities.Users;
 
 namespace ExpressDeliveryMail.Service.Interfaces;
 
 public interface IUserService
 {
-    ValueTask<User> CreatedAsync(User user);
-    ValueTask<User> UpdateAsync(long id, User user);
+    ValueTask<UserViewModel> CreatedAsync(UserCreationModel user);
+    ValueTask<UserViewModel> UpdateAsync(long id, UserUpdateModel user, bool IsUsesDeleted);
     ValueTask<bool> DeleteAsync(long id);
-    ValueTask<User> GetByIdAsync(long id);
-    ValueTask<IEnumerable<User>> GetAllAsync();
+    ValueTask<UserViewModel> GetByIdAsync(long id);
+    ValueTask<IEnumerable<UserViewModel>> GetAllAsync();
+    ValueTask<UserViewModel> DepositAsync(long id, decimal amount);
 }

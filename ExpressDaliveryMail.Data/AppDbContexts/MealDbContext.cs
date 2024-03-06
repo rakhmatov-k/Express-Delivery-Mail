@@ -1,5 +1,6 @@
 ﻿using ExpressDeliveryMail.Domain.Configurations;
 using ExpressDeliveryMail.Domain.Entities;
+using ExpressDeliveryMail.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExpressDaliveryMail.Data.AppDbContexts;
