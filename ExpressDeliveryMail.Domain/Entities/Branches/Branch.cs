@@ -1,6 +1,6 @@
 ﻿using ExpressDeliveryMail.Domain.Commons;
 
-namespace ExpressDeliveryMail.Domain.Entities;
+namespace ExpressDeliveryMail.Domain.Entities.Branches;
 
 public class Branch : Auditable
 {
