@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ExpressDeliveryMail.Domain\ExpressDeliveryMail.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
