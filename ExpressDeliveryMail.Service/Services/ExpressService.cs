@@ -31,7 +31,6 @@ public class ExpressService : IExpressService
                 return await UpdateAsync(existExpress.Id, express.MapTo<ExpressUpdateModel>(), true);
             throw new Exception($"This express is already exist With this transport id {express.TransportId}");
         }
-
         var createdExpress = await expressRepository.InsertAsync(express.MapTo<Express>());
         return createdExpress.MapTo<ExpressViewModel>();
     }

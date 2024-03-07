@@ -1,7 +1,6 @@
 using ExpressDaliveryMail.Data.AppDbContexts;
 using ExpressDaliveryMail.Data.IRepositories;
 using ExpressDeliveryMail.Domain.Entities;
-using ExpressDeliveryMail.Domain.Entities.Expresses;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExpressDaliveryMail.Data.Repositories;

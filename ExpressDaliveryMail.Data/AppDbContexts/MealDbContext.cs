@@ -1,6 +1,7 @@
 ﻿using ExpressDeliveryMail.Domain.Configurations;
 using ExpressDeliveryMail.Domain.Entities;
 using ExpressDeliveryMail.Domain.Entities.Branches;
+using ExpressDeliveryMail.Domain.Entities.Expresses;
 using ExpressDeliveryMail.Domain.Entities.Payments;
 using ExpressDeliveryMail.Domain.Entities.Transactions;
 using ExpressDeliveryMail.Domain.Entities.Transports;
@@ -9,9 +10,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExpressDaliveryMail.Data.AppDbContexts;
 
-public class MealDbContext:DbContext
+public class MealDbContext : DbContext
 {
-    public DbSet<User>users {  get; set; }
+    public DbSet<User> users { get; set; }
     public DbSet<Transport> transports { get; set; }
     public DbSet<Branch> branches { get; set; }
     public DbSet<Transaction> transactions { get; set; }

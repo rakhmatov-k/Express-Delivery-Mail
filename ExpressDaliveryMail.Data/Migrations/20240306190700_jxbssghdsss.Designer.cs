@@ -13,7 +13,7 @@ namespace ExpressDaliveryMail.Data.Migrations
 {
     [DbContext(typeof(MealDbContext))]
     [Migration("20240306190700_jxbssghdsss")]
-    partial class jxbssghdsss
+    partial class Jxbssghdsss
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
