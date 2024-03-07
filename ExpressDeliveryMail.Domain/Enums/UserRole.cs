@@ -4,5 +4,4 @@ public enum UserRole
 {
     Admin,
     Sender,
-    Worker
 }

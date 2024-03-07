@@ -43,4 +43,4 @@
 using ExpressDeliveryMail.UI.Helpers;
 
 MainMenu mainMenu = new MainMenu();
-await mainMenu.RunAsync();
+await mainMenu.ShowMenuAsync();
