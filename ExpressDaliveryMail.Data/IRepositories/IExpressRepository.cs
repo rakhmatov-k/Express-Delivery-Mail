@@ -1,4 +1,4 @@
-﻿using ExpressDeliveryMail.Domain.Entities.Expresses;
+using ExpressDeliveryMail.Domain.Entities;
 
 namespace ExpressDaliveryMail.Data.IRepositories;
 

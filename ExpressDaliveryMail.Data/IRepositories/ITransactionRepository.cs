@@ -1,4 +1,5 @@
-﻿using ExpressDeliveryMail.Domain.Entities.Branches;
+using ExpressDeliveryMail.Domain.Entities;
+using ExpressDeliveryMail.Domain.Entities.Branches;
 using ExpressDeliveryMail.Domain.Entities.Transactions;
 
 namespace ExpressDaliveryMail.Data.IRepositories;

@@ -1,5 +1,6 @@
-﻿using ExpressDaliveryMail.Data.AppDbContexts;
+using ExpressDaliveryMail.Data.AppDbContexts;
 using ExpressDaliveryMail.Data.IRepositories;
+using ExpressDeliveryMail.Domain.Entities;
 using ExpressDeliveryMail.Domain.Entities.Branches;
 using ExpressDeliveryMail.Domain.Entities.Expresses;
 using Microsoft.EntityFrameworkCore;
@@ -30,9 +31,9 @@ public class ExpressRepository : IExpressRepository
 
     public async ValueTask<Express> InsertAsync(Express express)
     {
-        var createdExpress = await context.expresses.AddAsync(express);
+        var createdExpess = await context.expresses.AddAsync(express);
         context.SaveChanges();
-        return createdExpress.Entity;
+        return createdExpess.Entity;
     }
 
     public async ValueTask<Express> UpdateAsync(long id, Express express)
@@ -45,6 +46,7 @@ public class ExpressRepository : IExpressRepository
         existExpress.TransportId = express.TransportId;
         existExpress.ArrivalTime = express.ArrivalTime;
         existExpress.DepartureTime = express.DepartureTime;
+
         context.SaveChanges();
 
         return existExpress;
