@@ -5,7 +5,7 @@ using ExpressDeliveryMail.Service.Services;
 using Spectre.Console;
 using System.Text.RegularExpressions;
 
-namespace ExpressDeliveryMail.UI;
+namespace ExpressDeliveryMail.UI.OtherMenus;
 
 public class UserMenu
 {
@@ -61,7 +61,7 @@ public class UserMenu
         user.FirstName = AnsiConsole.Ask<string>("Enter First Name:");
         user.LastName = AnsiConsole.Ask<string>("Enter Last Name:");
         user.Phone = GetPhoneInput("Enter phone number: ");
-        user.Email = AnsiConsole.Ask<string>("Enter Email:"); 
+        user.Email = AnsiConsole.Ask<string>("Enter Email:");
         user.Role = AnsiConsole.Prompt(
             new SelectionPrompt<UserRole>()
                 .Title("Select new Role:")
@@ -140,7 +140,7 @@ public class UserMenu
                 {
                     UserRole.Admin,
                     UserRole.Sender
-                })); 
+                }));
         user.Password = GetValidPassword("Enter new Password:");
 
         try

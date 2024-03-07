@@ -3,7 +3,7 @@ using ExpressDaliveryMail.Data.Repositories;
 using ExpressDeliveryMail.Service.Services;
 using Spectre.Console;
 
-namespace ExpressDeliveryMail.UI.Helpers
+namespace ExpressDeliveryMail.UI.MainMenu
 {
     public class MainMenu
     {

@@ -2,7 +2,7 @@
 using ExpressDeliveryMail.Service.Extensions;
 using Spectre.Console;
 
-namespace ExpressDeliveryMail.UI;
+namespace ExpressDeliveryMail.UI.OtherMenus;
 
 public class TransactionMenu
 {

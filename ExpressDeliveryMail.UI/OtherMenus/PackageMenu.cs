@@ -3,7 +3,7 @@ using ExpressDeliveryMail.Domain.Enums;
 using ExpressDeliveryMail.Service.Interfaces;
 using Spectre.Console;
 
-namespace ExpressDeliveryMail.UI;
+namespace ExpressDeliveryMail.UI.OtherMenus;
 
 public class PackageMenu
 {

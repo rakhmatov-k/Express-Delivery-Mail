@@ -4,7 +4,7 @@ using ExpressDeliveryMail.Service.Interfaces;
 using Spectre.Console;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace ExpressDeliveryMail.UI;
+namespace ExpressDeliveryMail.UI.OtherMenus;
 
 public class TransportMenu
 {
