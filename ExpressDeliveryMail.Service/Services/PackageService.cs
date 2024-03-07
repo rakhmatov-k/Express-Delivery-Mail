@@ -1,7 +1,5 @@
-using ExpressDaliveryMail.Data.IRepositories;
 using ExpressDaliveryMail.Data.Repositories;
 using ExpressDeliveryMail.Domain.Entities;
-using ExpressDeliveryMail.Domain.Entities.Expresses;
 using ExpressDeliveryMail.Service.Extensions;
 using ExpressDeliveryMail.Service.Interfaces;
 
@@ -14,7 +12,7 @@ public class PackageService : IPackageService
     private BranchService branchService;
     public PackageService(PackageRepository packageRepository, UserService userService, BranchService branchService)
     {
-        this.packageRepository = packageRepository;   
+        this.packageRepository = packageRepository;
         this.userService = userService;
         this.branchService = branchService;
     }

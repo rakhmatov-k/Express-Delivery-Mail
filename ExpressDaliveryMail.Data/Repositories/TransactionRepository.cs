@@ -41,7 +41,7 @@ public class TransactionRepository : ITransactionRepository
         existTransaction.IsDeleted = false;
         existTransaction.UpdatedAt = DateTime.UtcNow;
         existTransaction.PackageId = transaction.PackageId;
-        existTransaction.ExpresssId = transaction.ExpressId;
+        existTransaction.ExpressId = transaction.ExpressId;
         context.SaveChanges();
 
         return existTransaction;

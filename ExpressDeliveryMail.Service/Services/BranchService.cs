@@ -1,7 +1,5 @@
-﻿using ExpressDaliveryMail.Data.IRepositories;
-using ExpressDaliveryMail.Data.Repositories;
+﻿using ExpressDaliveryMail.Data.Repositories;
 using ExpressDeliveryMail.Domain.Entities.Branches;
-using ExpressDeliveryMail.Domain.Entities.Users;
 using ExpressDeliveryMail.Service.Extensions;
 using ExpressDeliveryMail.Service.Interfaces;
 

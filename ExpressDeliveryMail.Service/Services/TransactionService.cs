@@ -27,7 +27,7 @@ public class TransactionService
         {
             if (existTransaction.IsDeleted)
                 return await UpdateAsync(existTransaction.Id, transaction.MapTo<TransactionUpdateModel>(), true);
-            throw new Exception($"This transactin is already exist With this express id {transaction.ExpressId} and package id {transaction.PackageId}");
+            throw new Exception($"This transaction is already exist With this express id {transaction.ExpressId} and package id {transaction.PackageId}");
         }
 
         var createdTransaction = await transactionRepository.InsertAsync(transaction.MapTo<Transaction>());
