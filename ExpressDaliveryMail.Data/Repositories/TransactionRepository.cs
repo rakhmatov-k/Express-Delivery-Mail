@@ -1,6 +1,5 @@
 ﻿using ExpressDaliveryMail.Data.AppDbContexts;
 using ExpressDaliveryMail.Data.IRepositories;
-using ExpressDeliveryMail.Domain.Entities.Branches;
 using ExpressDeliveryMail.Domain.Entities.Transactions;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,7 +22,7 @@ public class TransactionRepository : ITransactionRepository
         return true;
     }
 
-    public async  ValueTask<IEnumerable<Transaction>> GetAllAsync()
+    public async ValueTask<IEnumerable<Transaction>> GetAllAsync()
     {
         var transactions = await context.transactions.ToListAsync();
         return transactions;

@@ -1,4 +1,10 @@
+using ExpressDaliveryMail.Data.Repositories;
+using ExpressDeliveryMail.Domain.Entities.Transactions;
+using ExpressDeliveryMail.Service.Extensions;
+using ExpressDeliveryMail.Service.Services;
 
+public class TransactionService 
+{
     private TransactionRepository transactionRepository;
     private ExpressService expressService;
     private PackageService packageService;
