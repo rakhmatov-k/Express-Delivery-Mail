@@ -179,10 +179,6 @@ public class UserActions
     }
     #endregion
 
-    public async Task VoteForBranchRatingAsync()
-    {
-
-    }
     public async Task GetBranchByIdAsync()
     {
         var branchId = AnsiConsole.Ask<long>("Enter [green]Branch ID[/]: ");
@@ -238,14 +234,6 @@ public class UserActions
         Console.ReadLine();
     }
 
-    public async Task DeletePaymentAsync()
-    {
-
-    }
-    public async Task CreatePaymentAsync()
-    {
-
-    }
     public async Task GetAllPackagesAsync()
     {
         var packages = await packageService.GetAllAsync();
@@ -274,6 +262,7 @@ public class UserActions
         }
         Console.ReadLine();
     }
+
     private void DisplayAllPackages(IEnumerable<Package> packages)
     {
         var table = new Table();
@@ -337,6 +326,18 @@ public class UserActions
 
     }
     public async Task CreatePackageAsync()
+    {
+
+    }
+    public async Task DeletePaymentAsync()
+    {
+
+    }
+    public async Task CreatePaymentAsync()
+    {
+
+    }
+    public async Task VoteForBranchRatingAsync()
     {
 
     }
