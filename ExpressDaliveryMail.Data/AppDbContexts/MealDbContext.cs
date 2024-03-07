@@ -1,7 +1,8 @@
 ﻿using ExpressDeliveryMail.Domain.Configurations;
 using ExpressDeliveryMail.Domain.Entities;
 using ExpressDeliveryMail.Domain.Entities.Branches;
-using ExpressDeliveryMail.Domain.Entities.Expresses;
+using ExpressDeliveryMail.Domain.Entities.Payments;
+using ExpressDeliveryMail.Domain.Entities.Transactions;
 using ExpressDeliveryMail.Domain.Entities.Transports;
 using ExpressDeliveryMail.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
