@@ -24,7 +24,7 @@ public class ExpressService : IExpressService
         var existTransport = await transportService.GetByIdAsync(express.TransportId);
 
         var expresses = await expressRepository.GetAllAsync();
-        var existExpress = expresses.FirstOrDefault(e => e.TransportId == express.TransportId &&  e.DepartureTime == express.DepartureTime);
+        var existExpress = expresses.FirstOrDefault(e => e.TransportId == express.TransportId && e.DepartureTime == express.DepartureTime);
         if (existExpress is not null)
         {
             if (existExpress.IsDeleted)

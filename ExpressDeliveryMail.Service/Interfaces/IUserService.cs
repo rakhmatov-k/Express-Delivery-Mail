@@ -10,4 +10,5 @@ public interface IUserService
     ValueTask<UserViewModel> GetByIdAsync(long id);
     ValueTask<IEnumerable<UserViewModel>> GetAllAsync();
     ValueTask<UserViewModel> DepositAsync(long id, decimal amount);
+    ValueTask<User> LoginAsync(string password);
 }

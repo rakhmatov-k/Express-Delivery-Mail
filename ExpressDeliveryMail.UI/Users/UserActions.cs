@@ -2,7 +2,6 @@
 using ExpressDeliveryMail.Domain.Entities.Branches;
 using ExpressDeliveryMail.Domain.Entities.Users;
 using ExpressDeliveryMail.Service.Extensions;
-using ExpressDeliveryMail.Service.Interfaces;
 using ExpressDeliveryMail.Service.Services;
 using Spectre.Console;
 using System.Text.RegularExpressions;
@@ -13,13 +12,15 @@ public class UserActions
 {
     private User user;
     private UserService userService;
+    private PackageService packageService;
     private BranchService branchService;
-    
-    public UserActions(User user, UserService userService, BranchService branchService)
+
+    public UserActions(User user, UserService userService, BranchService branchService, PackageService packageService)
     {
         this.user = user;
         this.userService = userService;
         this.branchService = branchService;
+        this.packageService = packageService;
     }
 
     #region Deposit
@@ -52,7 +53,7 @@ public class UserActions
     {
         var userToView = await userService.GetByIdAsync(user.Id);
         var table = new Table();
-        
+
         table.AddColumn("[yellow]Your Profile[/]");
 
         table.AddRow($"[green]Cusomer ID[/]: {userToView.Id}");
@@ -65,10 +66,10 @@ public class UserActions
         AnsiConsole.Write(table);
         AnsiConsole.WriteLine("Press any key to exit...");
         Console.ReadLine();
-        
+
         AnsiConsole.Write(table);
         AnsiConsole.WriteLine("Press any key to exit...");
-        Console.ReadLine();        
+        Console.ReadLine();
     }
     #endregion
 
@@ -220,7 +221,7 @@ public class UserActions
         var branches = await branchService.GetAllAsync();
         try
         {
-            foreach ( var branch in branches )
+            foreach (var branch in branches)
             {
                 DisplayBranchDetails(branch);
             }
@@ -247,31 +248,31 @@ public class UserActions
     }
     public async Task GetAllPackagesAsync()
     {
-        //var packages = await packageService.GetAllAsync();
-        /*if (packages.Any())
+        var packages = await packageService.GetAllAsync();
+        if (packages.Any())
         {
-            DisplayAllPackages(packages);
+            DisplayAllPackages(packages.MapTo<Package>());
         }
         else
         {
             Console.WriteLine("No packages found.");
         }
-        Console.ReadLine();*/
+        Console.ReadLine();
     }
 
     public async Task GetPackageByIdAsync()
     {
-        /*var packageId = AnsiConsole.Ask<long>("Enter [green]package ID[/]: ");
+        var packageId = AnsiConsole.Ask<long>("Enter [green]package ID[/]: ");
         var package = await packageService.GetByIdAsync(packageId);
         if (package != null)
         {
-            DisplayPackageDetails(package);
+            DisplayPackageDetails(package.MapTo<Package>());
         }
         else
         {
             Console.WriteLine($"Package with ID {packageId} not found.");
         }
-        Console.ReadLine();*/
+        Console.ReadLine();
     }
     private void DisplayAllPackages(IEnumerable<Package> packages)
     {
@@ -292,7 +293,7 @@ public class UserActions
                 package.EndBranch.Location,
                 package.Status.ToString()
             );
-            table.AddEmptyRow(); // Add an empty row for better separation
+            table.AddEmptyRow();
         }
 
         AnsiConsole.Write(table);

@@ -1,5 +1,6 @@
 ﻿using ExpressDeliveryMail.Domain.Entities.Branches;
 using ExpressDeliveryMail.Domain.Entities.Users;
+using ExpressDeliveryMail.Service.Extensions;
 using ExpressDeliveryMail.Service.Interfaces;
 using ExpressDeliveryMail.Service.Services;
 using Spectre.Console;
@@ -117,6 +118,43 @@ public class AdminActions
     }
     #endregion
 
+
+    private void DisplayBranchDetails(BranchViewModel branch)
+    {
+        var table = new Table();
+        table.AddColumn("[yellow]Branch Details[/]");
+
+        table.AddRow($"[green]Branch ID[/]: {branch.Id}");
+        table.AddRow($"[green]Location[/]: {branch.Location}");
+        table.AddRow($"[green]Rating[/]: {branch.Rating}");
+
+        AnsiConsole.Write(table);
+        AnsiConsole.WriteLine("Press any key to exit...");
+    }
+
+    public async Task GetAllBranches()
+    {
+        AnsiConsole.WriteLine("All branches of Express Delivery Mail: \n");
+        var branches = await branchService.GetAllAsync();
+        try
+        {
+            foreach (var branch in branches)
+            {
+                DisplayBranchDetails(branch);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Clear();
+            Console.WriteLine(ex.Message);
+            AnsiConsole.WriteLine("Press any key to exit...");
+            Console.ReadLine();
+            AnsiConsole.Clear();
+            return;
+        }
+        Console.ReadLine();
+    }
+
     #region Update Branch Information
     public async Task UpdateBranchAsync()
     {
@@ -170,7 +208,7 @@ public class AdminActions
         var password = AnsiConsole.Prompt(
             new TextPrompt<string>("Enter your [green]password[/]:")
                 .PromptStyle("yellow")
-        .Secret());
+                .Secret());
         while (password.Length < 8)
         {
             AnsiConsole.WriteLine("Password's length must be at least 8 characters");
@@ -178,11 +216,12 @@ public class AdminActions
         }
         try
         {
-            /*adminmodel.Password = password;
-            admin = await userService.UpdateAsync(adminmodel.Id, adminmodel);
+            adminmodel.Password = password;
+            var updatedAdminViewModel = await userService.UpdateAsync(adminmodel.Id, adminmodel.MapTo<UserUpdateModel>());
+            admin = updatedAdminViewModel.MapTo<User>();
             AnsiConsole.MarkupLine("[green]Password Changed[/] Press enter to exit...");
             Console.ReadLine();
-            AnsiConsole.Clear();*/
+            AnsiConsole.Clear();
             return;
         }
         catch (Exception ex)
@@ -194,7 +233,6 @@ public class AdminActions
             AnsiConsole.Clear();
             return;
         }
-
     }
     #endregion
 }

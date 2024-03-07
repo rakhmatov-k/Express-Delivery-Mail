@@ -1,4 +1,5 @@
-﻿using ExpressDaliveryMail.Data.Repositories;
+﻿using ExpressDaliveryMail.Data.AppDbContexts;
+using ExpressDaliveryMail.Data.Repositories;
 using ExpressDeliveryMail.Domain.Entities.Users;
 using ExpressDeliveryMail.Service.Services;
 using ExpressDeliveryMail.UI.Admin;
@@ -9,27 +10,46 @@ namespace ExpressDeliveryMail.UI.Helpers;
 
 public class MainMenu
 {
+    private MealDbContext mealDbContext;
     private User user;
     private UserService userService;
     private UserActions userActions;
-    private TransportService transportService;
+    private UserLogin userLogin;
+    private UserRegister userRegister;
+    private AdminMenu adminMenu;
     private BranchService branchService;
+    private UserMenu userMenu;
+    private PackageService packageService;
+    private PaymentService paymentService;
 
     private AdminLogin adminLogin;
 
-    private UserLogin userLogin;
-    private UserRegister userRegister;
-
     private UserRepositories userRepositories;
+    private BranchRepository branchRepository;
+    private PackageRepository packageRepository;
+    private PaymentRepository paymentRepository;
 
     public MainMenu()
     {
-        user = new User();
+        userRepositories = new UserRepositories(mealDbContext);
         userService = new UserService(userRepositories);
-        userActions = new UserActions(user, userService, branchService);
-        adminLogin = new AdminLogin(userService);
-        userLogin = new UserLogin(userService, userActions);
-        userRegister = new UserRegister(userService);
+
+        branchRepository = new BranchRepository(mealDbContext);
+        branchService = new BranchService(branchRepository);
+
+        packageRepository = new PackageRepository(mealDbContext);
+        packageService = new PackageService(packageRepository, userService, branchService);
+
+        paymentRepository = new PaymentRepository(mealDbContext);
+        paymentService = new PaymentService(userService, paymentRepository);
+
+        userActions = new UserActions(user, userService, branchService, packageService);
+        userMenu = new UserMenu(user, userActions, userService, branchService, packageService);
+        userLogin = new UserLogin(userService, userActions, branchService, userMenu, packageService);
+        userRegister = new UserRegister(userService, userMenu, branchService, paymentService, packageService, userActions);
+
+        adminMenu = new AdminMenu(user, userService, branchService); 
+        adminLogin = new AdminLogin(userService, branchService, adminMenu);
     }
 
     #region Run
@@ -39,16 +59,16 @@ public class MainMenu
         {
             var choise = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
-                    .Title("Dream[green]House[/]")
+                    .Title("[green]Express Delivery Mail[/]")
                     .PageSize(4)
                     .AddChoices(new[] {
-                        "As Customer",
+                        "As Mail Sender",
                         "As Administrator\n",
                         "[red]Exit[/]"}));
 
             switch (choise)
             {
-                case "As Customer":
+                case "As Mail Sender":
                     AnsiConsole.Clear();
                     await CustomerAskAsync();
                     break;
@@ -70,7 +90,7 @@ public class MainMenu
         {
             var c = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
-                .Title("As Customer")
+                .Title("As Mail Sender")
                 .PageSize(4)
                 .AddChoices(new[] {
                             "Login",

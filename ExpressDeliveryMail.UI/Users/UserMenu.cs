@@ -11,13 +11,15 @@ namespace ExpressDeliveryMail.UI.Users
         private UserActions userActions;
         private UserService userService;
         private BranchService branchService;
+        private PackageService packageService;
 
-        public UserMenu(User user, UserActions userActions, UserService userService, BranchService branchService)
+        public UserMenu(User user, UserActions userActions, UserService userService, BranchService branchService, PackageService packageService)
         {
             this.user = user;
             this.userService = userService;
             this.branchService = branchService;
-            userActions = new UserActions(user, userService, branchService);
+            userActions = new UserActions(user, userService, branchService, packageService);
+            this.packageService = packageService;
         }
 
         public async Task MenuAsync()
