@@ -1,137 +1,175 @@
 ﻿using ExpressDaliveryMail.Data.AppDbContexts;
 using ExpressDaliveryMail.Data.Repositories;
-using ExpressDeliveryMail.Domain.Entities.Users;
 using ExpressDeliveryMail.Service.Services;
-using ExpressDeliveryMail.UI.Admin;
-using ExpressDeliveryMail.UI.Users;
 using Spectre.Console;
 
-namespace ExpressDeliveryMail.UI.Helpers;
-
-public class MainMenu
+namespace ExpressDeliveryMail.UI.Helpers
 {
-    private MealDbContext mealDbContext;
-    private User user;
-    private UserService userService;
-    private UserActions userActions;
-    private UserLogin userLogin;
-    private UserRegister userRegister;
-    private AdminMenu adminMenu;
-    private BranchService branchService;
-    private UserMenu userMenu;
-    private PackageService packageService;
-    private PaymentService paymentService;
-
-    private AdminLogin adminLogin;
-
-    private UserRepositories userRepositories;
-    private BranchRepository branchRepository;
-    private PackageRepository packageRepository;
-    private PaymentRepository paymentRepository;
-
-    public MainMenu()
+    public class MainMenu
     {
-        userRepositories = new UserRepositories(mealDbContext);
-        userService = new UserService(userRepositories);
+        private readonly MealDbContext context;
 
-        branchRepository = new BranchRepository(mealDbContext);
-        branchService = new BranchService(branchRepository);
+        private readonly UserService _userService;
+        private readonly BranchService _branchService;
+        private readonly ExpressService _expressService;
+        private readonly PackageService _packageService;
+        private readonly PaymentService _paymentService;
+        private readonly TransactionService _transactionService;
+        private readonly TransportService _transportService;
 
-        packageRepository = new PackageRepository(mealDbContext);
-        packageService = new PackageService(packageRepository, userService, branchService);
+        private readonly UserRepositories userRepositories;
+        private readonly BranchRepository branchRepository;
+        private readonly ExpressRepository expressRepository;
+        private readonly PaymentRepository paymentRepository;
+        private readonly PackageRepository packageRepository;
+        private readonly TransportRepository transportRepository;
+        private readonly TransactionRepository transactionRepository;
 
-        paymentRepository = new PaymentRepository(mealDbContext);
-        paymentService = new PaymentService(userService, paymentRepository);
-
-        userActions = new UserActions(user, userService, branchService, packageService);
-        userMenu = new UserMenu(user, userActions, userService, branchService, packageService);
-        userLogin = new UserLogin(userService, userActions, branchService, userMenu, packageService);
-        userRegister = new UserRegister(userService, userMenu, branchService, paymentService, packageService, userActions);
-
-        adminMenu = new AdminMenu(user, userService, branchService); 
-        adminLogin = new AdminLogin(userService, branchService, adminMenu);
-    }
-
-    #region Run
-    public async Task RunAsync()
-    {
-        while (true)
+        public MainMenu()
         {
-            var choise = AnsiConsole.Prompt(
+            context = new MealDbContext();
+
+            userRepositories = new UserRepositories(context);
+            branchRepository = new BranchRepository(context);
+            expressRepository = new ExpressRepository(context);
+            paymentRepository = new PaymentRepository(context);
+            packageRepository = new PackageRepository(context);
+            transactionRepository = new TransactionRepository(context);
+            transportRepository = new TransportRepository(context);
+
+            _userService = new UserService(userRepositories);
+            _branchService = new BranchService(branchRepository);
+            _expressService = new ExpressService(expressRepository, _branchService, _transportService);
+            _packageService = new PackageService(packageRepository, _userService, _branchService);
+            _paymentService = new PaymentService(_userService, paymentRepository);
+            _transactionService = new TransactionService(transactionRepository, _expressService, _packageService);
+            _transportService = new TransportService(transportRepository);
+        }
+
+        public async Task ShowMenuAsync()
+        {
+            while (true)
+            {
+                var selectedRole = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
-                    .Title("[green]Express Delivery Mail[/]")
-                    .PageSize(4)
-                    .AddChoices(new[] {
-                        "As Mail Sender",
-                        "As Administrator\n",
-                        "[red]Exit[/]"}));
+                    .Title("[yellow]Select User Role[/]")
+                    .PageSize(3)
+                    .AddChoices(new[]
+                    {
+                        "Mail Sender",
+                        "Admin"
+                    }));
+                await Task.Delay(1000);
+                AnsiConsole.Clear();
+                Console.WriteLine($"[yellow]Welcome to Express Delivery Mail System[/]");
 
-            switch (choise)
-            {
-                case "As Mail Sender":
-                    AnsiConsole.Clear();
-                    await CustomerAskAsync();
-                    break;
-                case "As Administrator\n":
-                    AnsiConsole.Clear();
-                    await AdminAskAsync();
-                    break;
-                case "[red]Exit[/]":
-                    return;
+                switch (selectedRole)
+                {
+                    case "Admin":
+                        await ShowAdminMenu();
+                        break;
+                    case "Mail Sender":
+                        await ShowSenderMenu();
+                        break;
+                    default:
+                        Console.WriteLine("[red]Invalid role. Exiting the application.[/]");
+                        return;
+                }
             }
         }
-    }
-    #endregion
 
-    #region Customer
-    public async Task CustomerAskAsync()
-    {
-        while (true)
+        private async Task ShowAdminMenu()
         {
-            var c = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .Title("As Mail Sender")
-                .PageSize(4)
-                .AddChoices(new[] {
-                            "Login",
-                            "Register\n",
-                            "[red]Go Back[/]"}));
-            switch (c)
-            {
-                case "Login":
-                    await userLogin.LoginAync();
-                    break;
-                case "Register\n":
-                    await userRegister.RegisterAsync();
-                    break;
-                case "[red]Go Back[/]":
-                    return;
-            }
-        }
-    }
-    #endregion
+            var branchMenu = new BranchMenu(_branchService);
+            var expressMenu = new ExpressMenu(_expressService);
+            var packageMenu = new PackageMenu(_packageService);
+            var paymentMenu = new PaymentMenu(_paymentService);
+            var transactionMenu = new TransactionMenu(_transactionService);
+            var transportMenu = new TransportMenu(_transportService);
+            var userMenu = new UserMenu(_userService);
 
-    #region Admin
-    public async Task AdminAskAsync()
-    {
-        while (true)
-        {
-            var c = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .Title("As Administrator")
-                .PageSize(4)
-                .AddChoices(new[] {
-                            "Login\n",
-                            "[red]Go Back[/]"}));
-            switch (c)
+            while (true)
             {
-                case "Login\n":
-                    await adminLogin.LoginAsync();
-                    break;
-                case "[red]Go Back[/]":
-                    return;
+                var choice = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                        .Title("[yellow]Admin Menu[/]")
+                        .PageSize(7)
+                        .AddChoices(new[]
+                        {
+                            "Branch Menu",
+                            "Express Menu",
+                            "Package Menu",
+                            "Payment Menu",
+                            "Transaction Menu",
+                            "Transport Menu",
+                            "User Menu",
+                            "Exit"
+                        }));
+
+                switch (choice)
+                {
+                    case "Branch Menu":
+                        await branchMenu.RunAsync();
+                        break;
+                    case "Express Menu":
+                        await expressMenu.ShowMenuAsync();
+                        break;
+                    case "Package Menu":
+                        await packageMenu.ShowMenuAsync();
+                        break;
+                    case "Payment Menu":
+                        await paymentMenu.ShowMenuAsync();
+                        break;
+                    case "Transaction Menu":
+                        await transactionMenu.RunAsync();
+                        break;
+                    case "Transport Menu":
+                        await transportMenu.ShowMenuAsync();
+                        break;
+                    case "User Menu":
+                        await userMenu.RunAsync();
+                        break;
+                    case "Exit":
+                        return;
+                }
+            }
+        }
+
+        private async Task ShowSenderMenu()
+        {
+            var packageMenu = new PackageMenu(_packageService);
+            var paymentMenu = new PaymentMenu(_paymentService);
+            var transactionMenu = new TransactionMenu(_transactionService);
+
+            while (true)
+            {
+                var choice = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                        .Title("[yellow]Sender Menu[/]")
+                        .PageSize(4)
+                        .AddChoices(new[]
+                        {
+                            "Package Menu",
+                            "Payment Menu",
+                            "Transaction Menu",
+                            "Exit"
+                        }));
+
+                switch (choice)
+                {
+                    case "Package Menu":
+                        await packageMenu.ShowMenuAsync();
+                        break;
+                    case "Payment Menu":
+                        await paymentMenu.ShowMenuAsync();
+                        break;
+                    case "Transaction Menu":
+                        await transactionMenu.RunAsync();
+                        break;
+                    case "Exit":
+                        return;
+                }
             }
         }
     }
-    #endregion
 }
