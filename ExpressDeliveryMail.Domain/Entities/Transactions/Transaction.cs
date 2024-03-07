@@ -1,7 +1,7 @@
 ﻿using ExpressDeliveryMail.Domain.Commons;
 using ExpressDeliveryMail.Domain.Entities.Expresses;
 
-namespace ExpressDeliveryMail.Domain.Entities;
+namespace ExpressDeliveryMail.Domain.Entities.Transactions;
 
 public class Transaction : Auditable
 {

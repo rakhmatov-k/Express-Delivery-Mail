@@ -1,11 +1,11 @@
-﻿using ExpressDeliveryMail.Domain.Commons;
-using ExpressDeliveryMail.Domain.Entities.Users;
+﻿using ExpressDeliveryMail.Domain.Entities.Users;
 using ExpressDeliveryMail.Domain.Enums;
 
-namespace ExpressDeliveryMail.Domain.Entities;
+namespace ExpressDeliveryMail.Domain.Entities.Payments;
 
-public class Payment : Auditable
+public class PaymentViewModel
 {
+    public long Id { get; set; }
     public long PackageId { get; set; }
     public Package Package { get; set; }
     public long UserId { get; set; }
