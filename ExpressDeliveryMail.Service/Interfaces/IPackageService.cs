@@ -1,5 +1,4 @@
 ﻿using ExpressDeliveryMail.Domain.Entities;
-using ExpressDeliveryMail.Domain.Entities.Packages;
 
 namespace ExpressDeliveryMail.Service.Interfaces;
 

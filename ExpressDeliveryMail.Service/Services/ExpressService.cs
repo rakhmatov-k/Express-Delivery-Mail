@@ -20,7 +20,7 @@ public class ExpressService : IExpressService
 
     public async ValueTask<ExpressViewModel> CreatedAsync(ExpressCreationModel express)
     {
-        var existUser = await branchService.GetByIdAsync(express.BranchId);
+        var existBranch = await branchService.GetByIdAsync(express.BranchId);
         var existTransport = await transportService.GetByIdAsync(express.TransportId);
 
         var expresses = await expressRepository.GetAllAsync();
