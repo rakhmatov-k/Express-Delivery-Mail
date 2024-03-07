@@ -1,10 +1,9 @@
-﻿using ExpressDeliveryMail.Domain.Commons;
-using ExpressDeliveryMail.Domain.Entities.Branches;
+﻿using ExpressDeliveryMail.Domain.Entities.Branches;
 using ExpressDeliveryMail.Domain.Entities.Transports;
 
-namespace ExpressDeliveryMail.Domain.Entities;
+namespace ExpressDeliveryMail.Domain.Entities.Expresses;
 
-public class Express : Auditable
+public class ExpressUpdateModel
 {
     public decimal Distance { get; set; }
     public long BranchId { get; set; }

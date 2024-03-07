@@ -1,12 +1,12 @@
-﻿using ExpressDeliveryMail.Domain.Entities;
+﻿using ExpressDeliveryMail.Domain.Entities.Expresses;
 
 namespace ExpressDeliveryMail.Service.Interfaces;
 
 public interface IExpressService
 {
-    ValueTask<Express> CreatedAsync(Express express);
-    ValueTask<Express> UpdateAsync(long id, Express express);
+    ValueTask<ExpressViewModel> CreatedAsync(ExpressCreationModel express);
+    ValueTask<ExpressViewModel> UpdateAsync(long id, ExpressUpdateModel express, bool isUsesDeleted);
     ValueTask<bool> DeleteAsync(long id);
-    ValueTask<Express> GetByIdAsync(long id);
-    ValueTask<IEnumerable<Express>> GetAllAsync();
+    ValueTask<ExpressViewModel> GetByIdAsync(long id);
+    ValueTask<IEnumerable<ExpressViewModel>> GetAllAsync();
 }
