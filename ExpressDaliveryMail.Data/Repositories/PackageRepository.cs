@@ -1,6 +1,7 @@
-﻿using ExpressDaliveryMail.Data.AppDbContexts;
+using ExpressDaliveryMail.Data.AppDbContexts;
 using ExpressDaliveryMail.Data.IRepositories;
 using ExpressDeliveryMail.Domain.Entities;
+using ExpressDeliveryMail.Domain.Entities.Expresses;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExpressDaliveryMail.Data.Repositories;
@@ -39,18 +40,15 @@ public class PackageRepository : IPackageRepository
     {
         var existPackage = await context.packages.FirstAsync(u => u.Id == id);
         existPackage.IsDeleted = false;
-        existPackage.Weight = package.Weight;
-        existPackage.ReceiverPhone = package.ReceiverPhone;
-        existPackage.ReceiverName = package.ReceiverName;
+        existPackage.UserId = package.UserId;
         existPackage.Status = package.Status;
-        existPackage.Category = package.Category;
-        existPackage.EndBranch = package.EndBranch;
-        existPackage.StartBranch = package.StartBranch;
-        existPackage.StartBranchId = package.StartBranchId;
-        existPackage.EndBranchId = package.EndBranchId;
-        existPackage.User = package.User;
-        existPackage.UserId = package.UserId;   
+        existPackage.Weight = package.Weight;
         existPackage.UpdatedAt = DateTime.UtcNow;
+        existPackage.Category = package.Category;
+        existPackage.EndBranchId = package.EndBranchId;
+        existPackage.ReceiverName = package.ReceiverName;
+        existPackage.StartBranchId = package.StartBranchId;
+        existPackage.ReceiverPhone = package.ReceiverPhone;
         context.SaveChanges();
 
         return existPackage;

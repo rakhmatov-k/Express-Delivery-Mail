@@ -1,7 +1,8 @@
-﻿using ExpressDaliveryMail.Data.AppDbContexts;
+using ExpressDaliveryMail.Data.AppDbContexts;
 using ExpressDaliveryMail.Data.IRepositories;
 using ExpressDeliveryMail.Domain.Entities;
 using ExpressDeliveryMail.Domain.Entities.Branches;
+using ExpressDeliveryMail.Domain.Entities.Expresses;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExpressDaliveryMail.Data.Repositories;
@@ -39,14 +40,13 @@ public class ExpressRepository : IExpressRepository
     {
         var existExpress = await context.expresses.FirstAsync(u => u.Id == id);
         existExpress.IsDeleted = false;
-        existExpress.Distance = express.Distance;
-        existExpress.Transport = express.Transport;
-        existExpress.TransportId = express.TransportId;
-        existExpress.Branch = express.Branch;
         existExpress.BranchId = express.BranchId;
-        existExpress.DepartureTime = express.DepartureTime;
-        existExpress.ArrivalTime = express.ArrivalTime;        
+        existExpress.Distance = express.Distance;
         existExpress.UpdatedAt = DateTime.UtcNow;
+        existExpress.TransportId = express.TransportId;
+        existExpress.ArrivalTime = express.ArrivalTime;
+        existExpress.DepartureTime = express.DepartureTime;
+
         context.SaveChanges();
 
         return existExpress;

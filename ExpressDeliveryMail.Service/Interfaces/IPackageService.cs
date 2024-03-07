@@ -4,9 +4,9 @@ namespace ExpressDeliveryMail.Service.Interfaces;
 
 public interface IPackageService
 {
-    ValueTask<Package> CreatedAsync(Package package);
-    ValueTask<Package> UpdateAsync(long id, Package package);
+    ValueTask<PackageViewModel> CreatedAsync(PackageCreationModel package);
+    ValueTask<PackageViewModel> UpdateAsync(long id, PackageUpdateModel package, bool isUsesDeleted);
     ValueTask<bool> DeleteAsync(long id);
-    ValueTask<Package> GetByIdAsync(long id);
-    ValueTask<IEnumerable<Package>> GetAllAsync();
+    ValueTask<PackageViewModel> GetByIdAsync(long id);
+    ValueTask<IEnumerable<PackageViewModel>> GetAllAsync();
 }

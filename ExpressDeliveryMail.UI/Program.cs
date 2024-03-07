@@ -1,4 +1,4 @@
-﻿//using ExpressDaliveryMail.Data.AppDbContexts;
+//using ExpressDaliveryMail.Data.AppDbContexts;
 //using ExpressDaliveryMail.Data.Repositories;
 //using ExpressDeliveryMail.Domain.Entities.Users;
 //using ExpressDeliveryMail.Service.Services;
@@ -20,37 +20,22 @@
 
 //using ExpressDaliveryMail.Data.AppDbContexts;
 //using ExpressDaliveryMail.Data.Repositories;
-//using ExpressDeliveryMail.Domain.Entities.Branches;
-//using ExpressDeliveryMail.Service.Services;
-
-//MealDbContext mealDb = new MealDbContext();
-//BranchRepository branchRepository = new BranchRepository(mealDb);
-
-//BranchService branch = new BranchService(branchRepository);
-
-//BranchCreationModel branchCreationModel = new BranchCreationModel()
-//{
-//    Name = "name",
-//    Location = "dfdf",
-//    Rating = 6
-//};
-//await branch.CreatedAsync(branchCreationModel);
-
-//using ExpressDaliveryMail.Data.AppDbContexts;
-//using ExpressDaliveryMail.Data.Repositories;
-//using ExpressDeliveryMail.Domain.Entities.Transports;
+//using ExpressDeliveryMail.Domain.Entities.Expresses;
 //using ExpressDeliveryMail.Service.Services;
 
 //MealDbContext mealDbContext = new MealDbContext();
+//BranchRepository branchRepository = new BranchRepository(mealDbContext);
 //TransportRepository transportRepository = new TransportRepository(mealDbContext);
-
 //TransportService transportService = new TransportService(transportRepository);
-
-//TransportCreationModel transportCreationModel = new TransportCreationModel()
+//BranchService branchService = new BranchService(branchRepository);
+//ExpressRepository express = new ExpressRepository(mealDbContext);
+//ExpressService expressService = new ExpressService(express, branchService, transportService);
+//ExpressCreationModel model = new ExpressCreationModel()
 //{
-//    Description = "Description",
-//    Colour = "red"
+//    Distance = 10,
+//    BranchId = 1,
+//    TransportId = 1,
+//    DepartureTime = DateTime.UtcNow
 //};
-
 //await transportService.CreatedAsync(transportCreationModel);
-Console.WriteLine("salom");
+// await expressService.CreatedAsync(model);

@@ -1,12 +1,12 @@
-﻿using ExpressDeliveryMail.Domain.Entities;
+﻿using ExpressDeliveryMail.Domain.Entities.Payments;
 
 namespace ExpressDeliveryMail.Service.Interfaces;
 
 public interface IPaymentService
 {
-    ValueTask<Payment> CreatedAsync(Payment payment);
-    ValueTask<Payment> UpdateAsync(long id, Payment payment);
+    ValueTask<PaymentViewModel> CreatedAsync(PaymentCreationModel payment);
+    ValueTask<PaymentViewModel> UpdateAsync(long id, PaymentUpdateModel payment, bool isUsesDeleted);
     ValueTask<bool> DeleteAsync(long id);
-    ValueTask<Payment> GetByIdAsync(long id);
-    ValueTask<IEnumerable<Payment>> GetAllAsync();
+    ValueTask<PaymentViewModel> GetByIdAsync(long id);
+    ValueTask<IEnumerable<PaymentViewModel>> GetAllAsync();
 }
