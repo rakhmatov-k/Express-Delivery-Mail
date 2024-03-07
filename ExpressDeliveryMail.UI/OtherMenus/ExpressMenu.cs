@@ -3,7 +3,7 @@ using ExpressDeliveryMail.Service.Interfaces;
 using Spectre.Console;
 
 
-namespace ExpressDeliveryMail.UI;
+namespace ExpressDeliveryMail.UI.OtherMenus;
 public class ExpressMenu
 {
     private IExpressService expressService;

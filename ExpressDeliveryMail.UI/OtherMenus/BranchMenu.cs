@@ -3,7 +3,7 @@ using ExpressDeliveryMail.Service.Extensions;
 using ExpressDeliveryMail.Service.Services;
 using Spectre.Console;
 
-namespace ExpressDeliveryMail.UI;
+namespace ExpressDeliveryMail.UI.OtherMenus;
 
 public class BranchMenu
 {
