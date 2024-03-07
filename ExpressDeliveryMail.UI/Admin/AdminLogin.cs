@@ -1,4 +1,6 @@
-﻿using ExpressDeliveryMail.Service.Services;
+﻿using ExpressDeliveryMail.Domain.Entities.Users;
+using ExpressDeliveryMail.Service.Extensions;
+using ExpressDeliveryMail.Service.Services;
 using Spectre.Console;
 
 namespace ExpressDeliveryMail.UI.Admin;
@@ -7,10 +9,13 @@ public class AdminLogin
 {
     private UserService adminService;
     private AdminMenu adminMenu;
+    private BranchService branchService;
 
-    public AdminLogin(UserService adminService)
+    public AdminLogin(UserService adminService, BranchService branchService, AdminMenu adminMenu)
     {
         this.adminService = adminService;
+        this.branchService = branchService;
+        this.adminMenu = adminMenu;
     }
 
     #region Login
@@ -26,10 +31,9 @@ public class AdminLogin
 
             try
             {
-                /*var getAdmin = await adminService.LoginAsAdminAsync(password);
-
-                adminMenu = new AdminMenu(getAdmin, adminService);
-                await adminMenu.MenuAsync();*/
+                var getAdmin = await adminService.LoginAsync(password);
+                adminMenu = new AdminMenu(getAdmin, adminService, branchService);
+                await adminMenu.MenuAsync();
                 return;
             }
             catch (Exception ex)

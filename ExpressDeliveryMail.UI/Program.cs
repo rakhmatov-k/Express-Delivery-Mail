@@ -39,3 +39,8 @@
 //};
 //await transportService.CreatedAsync(transportCreationModel);
 // await expressService.CreatedAsync(model);
+
+using ExpressDeliveryMail.UI.Helpers;
+
+MainMenu mainMenu = new MainMenu();
+await mainMenu.RunAsync();

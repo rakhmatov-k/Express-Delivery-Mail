@@ -14,10 +14,16 @@ public class UserRegister
     private BranchService branchService;
     private PaymentService paymentService;
     private PackageService packageService;
+    private UserActions userActions;
 
-    public UserRegister(UserService UserService)
+    public UserRegister(UserService userService, UserMenu userMenu, BranchService branchService, PaymentService paymentService, PackageService packageService, UserActions userActions)
     {
-        this.userService = UserService;
+        this.userService = userService;
+        this.paymentService = paymentService;
+        this.userMenu = userMenu;
+        this.branchService = branchService;
+        this.packageService = packageService;
+        this.userActions = userActions;
     }
 
     #region Registration
@@ -58,10 +64,10 @@ public class UserRegister
             try
             {
                 var createdUser = await userService.CreatedAsync(userCreationModel);
-                //var getUser = await userService.GetToLoginAsync(username, password);
+                var getUser = await userService.LoginUserAsync(username, password);
 
-                //userMenu = new UserMenu(getUser, userService, packageService, paymentService, branchService);
-                //await userMenu.MenuAsync();
+                userMenu = new UserMenu(getUser, userActions, userService, branchService, packageService);
+                await userMenu.MenuAsync();
                 return;
             }
             catch (Exception ex)
