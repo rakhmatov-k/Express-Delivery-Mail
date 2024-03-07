@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Spectre.Console" Version="0.48.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ExpressDaliveryMail.Data\ExpressDaliveryMail.Data.csproj" />
     <ProjectReference Include="..\ExpressDeliveryMail.Domain\ExpressDeliveryMail.Domain.csproj" />
     <ProjectReference Include="..\ExpressDeliveryMail.Service\ExpressDeliveryMail.Service.csproj" />
